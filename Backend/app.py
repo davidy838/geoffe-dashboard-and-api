@@ -8,6 +8,11 @@ def create_app():
     # Register the blueprint
     app.register_blueprint(bp, url_prefix='/api')
     
+    # Add a simple health check endpoint
+    @app.route('/health')
+    def health():
+        return {'status': 'healthy', 'message': 'Service is running'}, 200
+    
     # Enable CORS for all routes
     @app.after_request
     def after_request(response):
