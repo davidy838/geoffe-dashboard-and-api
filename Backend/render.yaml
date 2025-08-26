@@ -3,6 +3,7 @@ services:
     name: geoffe-dashboard-api
     env: python
     plan: free
+    rootDir: Backend
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:

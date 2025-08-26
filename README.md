@@ -1,111 +1,98 @@
-# Geoffe Dashboard API
+# Geoffe Dashboard Project
 
-A Flask-based API for calculating distances and merging costs for healthcare facilities and communities.
+A full-stack application for calculating healthcare facility distances and costs, with separate backend and frontend deployments.
 
-## Features
-
-- Calculate distances between communities and clinics using real routing data
-- Merge community costs with encounter data
-- Support for multiple service types and age groups
-- Comprehensive cost analysis including productivity loss, caregiving, and out-of-pocket costs
-
-## API Endpoints
-
-### POST /api/calculate-distances-and-merge-costs
-
-Combined endpoint that calculates distances and merges costs in one operation.
-
-**Required Files:**
-
-- `community_file`: CSV with Title, Latitude, Longitude
-- `clinic_file`: CSV with Facility, latitude, longitude
-- `charlie_file`: CSV with community_name, age_group encounters
-- `costs_file`: CSV with cost equations
-
-## Deployment to Render
-
-### Prerequisites
-
-1. A Render account
-2. Git repository with your code
-
-### Deployment Steps
-
-1. **Push your code to Git:**
-
-   ```bash
-   git add .
-   git commit -m "Initial commit for Render deployment"
-   git push origin main
-   ```
-
-2. **Connect to Render:**
-
-   - Go to [render.com](https://render.com)
-   - Sign in and click "New +"
-   - Select "Web Service"
-   - Connect your Git repository
-
-3. **Configure the service:**
-
-   - **Name**: `geoffe-dashboard-api` (or your preferred name)
-   - **Environment**: `Python`
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `gunicorn app:app`
-   - **Plan**: Free (or choose your preferred plan)
-
-4. **Deploy:**
-   - Click "Create Web Service"
-   - Render will automatically build and deploy your application
-
-### Environment Variables
-
-The following environment variables are automatically set by Render:
-
-- `PORT`: Port number (automatically managed)
-- `PYTHON_VERSION`: Python version (set to 3.9.16)
-
-### API URL
-
-After deployment, your API will be available at:
+## Project Structure
 
 ```
-https://your-service-name.onrender.com/api/calculate-distances-and-merge-costs
+geoffe-dashboard-and-api/
+├── Backend/               # Flask API backend (deployed to Render)
+│   ├── app.py            # Main Flask application
+│   ├── api.py            # API routes and logic
+│   ├── requirements.txt  # Python dependencies
+│   ├── gunicorn.conf.py # Gunicorn configuration
+│   ├── render.yaml      # Render deployment config
+│   └── README.md        # Backend deployment instructions
+├── Frontend/             # Frontend application (deployed to Vercel)
+│   └── (frontend files will go here)
+└── README.md             # This file
 ```
 
-## Local Development
+## Backend (Flask API)
 
-1. **Install dependencies:**
+The backend is a Flask API that provides endpoints for:
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+- Calculating distances between communities and clinics
+- Merging community costs with encounter data
+- Comprehensive cost analysis
 
-2. **Run locally:**
+**Deployment**: Render (Python Web Service)
+**API Base URL**: `https://your-service-name.onrender.com/api`
 
-   ```bash
-   python app.py
-   ```
+### Key Endpoints
 
-3. **Test the API:**
-   - The API will be available at `http://localhost:5000/api/calculate-distances-and-merge-costs`
-   - Use tools like Postman or curl to test with CSV files
+- `POST /api/calculate-distances-and-merge-costs` - Combined distance and cost calculation
 
-## File Structure
+## Frontend
 
+The frontend will be a web application that:
+
+- Provides a user interface for uploading CSV files
+- Displays results and visualizations
+- Interacts with the backend API
+
+**Deployment**: Vercel
+**Status**: Coming soon
+
+## Development Workflow
+
+1. **Backend Development**:
+
+   - Work in the `Backend/` folder
+   - Test locally with `cd Backend && python app.py`
+   - Deploy to Render for production
+
+2. **Frontend Development**:
+
+   - Work in the `Frontend/` folder
+   - Build and test locally
+   - Deploy to Vercel for production
+
+3. **API Integration**:
+   - Frontend will make requests to the Render-deployed backend
+   - CORS is enabled for cross-origin requests
+
+## Getting Started
+
+### Backend Setup
+
+```bash
+cd Backend
+pip install -r requirements.txt
+python app.py
 ```
-├── app.py                 # Main Flask application
-├── api.py                 # API routes and logic
-├── requirements.txt       # Python dependencies
-├── gunicorn.conf.py      # Gunicorn configuration
-├── render.yaml           # Render deployment config
-├── .gitignore           # Git ignore rules
-└── README.md            # This file
+
+### Frontend Setup
+
+```bash
+cd Frontend
+# Frontend setup instructions will go here
 ```
+
+## Deployment
+
+- **Backend**: Automatically deploys to Render when you push to Git
+- **Frontend**: Will deploy to Vercel when ready
+
+## Contributing
+
+1. Make changes in the appropriate folder (Backend or Frontend)
+2. Test locally
+3. Commit and push changes
+4. Automatic deployment will handle the rest
 
 ## Notes
 
-- The API creates a `reports/` directory for output files
-- All calculations are performed in memory and results are returned as CSV downloads
-- The API supports multiple CSV encodings for robust file handling
-- CORS is enabled for cross-origin requests
+- Backend and frontend are completely separate and can be developed independently
+- API endpoints are designed to work with any frontend framework
+- CORS is enabled for development and production use
