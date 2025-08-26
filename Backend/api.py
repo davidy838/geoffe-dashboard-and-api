@@ -591,6 +591,5 @@ def calculate_distances_and_merge_costs():
 
     except Exception as e:
         print(f"Error in calculate_distances_and_merge_costs: {str(e)}")
-        import traceback
         print("Full traceback:", traceback.format_exc())
         return jsonify({"error": str(e)}), 500
