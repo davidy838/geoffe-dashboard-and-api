@@ -1,6 +1,7 @@
 Flask==2.3.3
-pandas==1.5.3
+pandas==2.2.2
+numpy>=1.26,<3
 requests==2.31.0
 geopy==2.4.0
-gunicorn==21.2.0
+gunicorn>=21.2.0
 Werkzeug==2.3.7 
