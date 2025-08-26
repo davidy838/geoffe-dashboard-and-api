@@ -6,17 +6,16 @@
 
 Your backend has been fixed and is now ready for Render deployment. The changes include:
 
-- **Python 3.8.16** specified in `runtime.txt` and `render.yaml`
-- **Compatible package versions** that avoid compilation issues
-- **Pre-compiled wheels** for pandas and other packages
+- **Python 3.11.9** specified in `runtime.txt` and `render.yaml`
+- **Modern package versions** that are compatible with Python 3.11+
+- **Pre-compiled wheels** for all packages to avoid compilation issues
 
 ### 🔧 **Render Deployment Steps**
 
 1. **Go to [render.com](https://render.com)** and sign in
 2. **Click "New +"** → **"Web Service"**
-3. **Connect your Git repository**: `geoffe-dashboard-and-api`
+3. **Connect your Git repository**: `geoffe-dashboard-api`
 4. **Configure the service**:
-
    - **Name**: `geoffe-dashboard-api` (or your preferred name)
    - **Environment**: `Python`
    - **Root Directory**: `Backend` ⚠️ **This is crucial!**
@@ -43,19 +42,16 @@ Your React frontend is complete and ready for Vercel deployment.
 ### 🔧 **Vercel Deployment Steps**
 
 1. **Install Vercel CLI**:
-
    ```bash
    npm i -g vercel
    ```
 
 2. **Navigate to frontend folder**:
-
    ```bash
    cd frontend
    ```
 
 3. **Deploy**:
-
    ```bash
    vercel
    ```
@@ -81,10 +77,10 @@ Update the API URL in `frontend/src/config.ts`:
 
 ```typescript
 export const API_CONFIG = {
-  development: "http://localhost:8000",
-  production: "https://your-actual-render-url.onrender.com", // ← Update this
+  development: 'http://localhost:8000',
+  production: 'https://your-actual-render-url.onrender.com', // ← Update this
   // ...
-};
+}
 ```
 
 ### **After Deployment**
@@ -99,17 +95,15 @@ export const API_CONFIG = {
 ## 📋 **Deployment Checklist**
 
 ### **Backend (Render)**
-
 - [ ] Git repository connected
 - [ ] Root Directory set to `Backend`
-- [ ] Python 3.8.16 specified
+- [ ] Python 3.11.9 specified
 - [ ] Build command: `pip install -r requirements.txt`
 - [ ] Start command: `gunicorn app:app`
 - [ ] Service deployed successfully
 - [ ] API endpoint accessible
 
 ### **Frontend (Vercel)**
-
 - [ ] Vercel CLI installed
 - [ ] Backend URL updated in config
 - [ ] Frontend built successfully
@@ -121,7 +115,6 @@ export const API_CONFIG = {
 ## 🧪 **Testing After Deployment**
 
 ### **Test Backend API**
-
 ```bash
 curl -X POST https://your-backend-url.onrender.com/api/calculate-distances-and-merge-costs \
   -F "community_file=@test.csv" \
@@ -131,7 +124,6 @@ curl -X POST https://your-backend-url.onrender.com/api/calculate-distances-and-m
 ```
 
 ### **Test Frontend**
-
 1. Open your Vercel URL
 2. Upload test CSV files
 3. Verify API integration works
@@ -142,19 +134,16 @@ curl -X POST https://your-backend-url.onrender.com/api/calculate-distances-and-m
 ## 🆘 **Troubleshooting**
 
 ### **Backend Build Fails**
-
-- Check Python version is 3.8.16
+- Check Python version is 3.11.9
 - Verify Root Directory is set to `Backend`
 - Check package compatibility in requirements.txt
 
 ### **Frontend Build Fails**
-
 - Ensure Node.js 16+ is installed
 - Check all dependencies are installed
 - Verify TypeScript compilation
 
 ### **API Connection Issues**
-
 - Confirm backend URL is correct
 - Check CORS settings
 - Verify backend is running
