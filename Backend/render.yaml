@@ -9,3 +9,5 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.8.16
+      - key: PIP_VERSION
+        value: 21.3.1
